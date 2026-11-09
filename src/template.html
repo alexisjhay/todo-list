@@ -27,7 +27,7 @@
 			<div class="sidebar">
 				<div class="sidebar-container menu">
 					<p class="sidebar-header">Menu</p>
-					<ul>
+					<ul class="main-list">
 						<li>All Tasks</li>
 						<li>Today</li>
 						<li>Upcoming</li>
@@ -35,25 +35,30 @@
 				</div>
 				<div class="sidebar-container project">
 					<p class="sidebar-header">Projects</p>
-					<ul>
+					<ul class="project-list">
 						<!-- <li>Default</li>
 						<li>Work</li>
 						<li>Personal</li>
 						<li>School</li> -->
 					</ul>
 				</div>
-				<button class="add-project">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						viewBox="0 0 24 24"
-						height="24px"
-						width="24px"
-						fill="#e3e3e3"
-					>
-						<path d="M11,13H5V11h6V5h2v6h6v2H13v6H11V13Z" />
-					</svg>
-					Add Project
-				</button>
+
+				<form class="project-form">
+					<label for="project-input">Project Name</label>
+					<input type="text" required id="project-input" />
+					<button type="submit" class="add-project">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 24 24"
+							height="24px"
+							width="24px"
+							fill="#e3e3e3"
+						>
+							<path d="M11,13H5V11h6V5h2v6h6v2H13v6H11V13Z" />
+						</svg>
+						Add Project
+					</button>
+				</form>
 			</div>
 			<div class="main">
 				<div class="main-header">

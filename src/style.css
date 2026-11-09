@@ -125,9 +125,29 @@ ul li {
 	font-weight: 400;
 }
 
-ul li:hover {
+ul li:hover,
+.active {
 	padding: 1rem;
 	background-color: var(--selected);
+}
+
+.project-form {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding-top: 1rem;
+	border-top: 1px solid var(--card);
+}
+
+.project-form label {
+	font-size: 0.8rem;
+	color: var(--card);
+}
+
+#project-input {
+	padding: 1rem;
+	border-radius: var(--border-radius);
+	border: none;
 }
 
 .add-project {
