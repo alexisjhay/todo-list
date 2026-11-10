@@ -94,7 +94,7 @@
 	background-color: var(--sidebar);
 	border-radius: var(--border-radius);
 	display: grid;
-	grid-template-rows: auto 1fr auto;
+	grid-template-rows: 1fr auto;
 	padding: 1rem;
 	gap: 1rem;
 	max-height: 100vh;
