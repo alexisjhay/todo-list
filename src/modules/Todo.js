@@ -1,11 +1,13 @@
-export const todo = [];
+export class Todo {
+	constructor(title, description, dueDate, priority, projectID) {
+		const uniqueId = crypto.randomUUID();
 
-class Todo {
-	constructor(name, description, dueDate, priority, project) {
-		this.name = name;
+		this.id = uniqueId;
+		this.title = title;
 		this.description = description;
 		this.dueDate = dueDate;
 		this.priority = priority;
-		this.project = project;
+		this.completed = false;
+		this.projectID = projectID;
 	}
 }

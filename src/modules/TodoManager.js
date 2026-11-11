@@ -1,18 +1,44 @@
-import { Project } from "./Project.js";
+import { Todo } from "./Todo.js";
 
-export const projects = [new Project("default", "Default", true)];
+export const todo = [
+	new Todo(
+		"Finish JavaScript course",
+		"Complete the DOM manipulation lesson",
+		"2026-11-12",
+		"High",
+		"1",
+	),
+	new Todo(
+		"Read a book",
+		"Read 20 pages of Atomic Habits",
+		"2026-11-11",
+		"Low",
+		"2",
+	),
+	new Todo(
+		"Build Todo App",
+		"Implement the todo creation feature",
+		"2026-11-13",
+		"High",
+		"0",
+	),
+
+	new Todo(
+		"Build Todo App",
+		"Implement the todo creation feature",
+		"2026-11-13",
+		"High",
+		"2",
+	),
+];
 
 export class TodoManager {
-	addProject(id, name, state) {
-		return projects.push(new Project(id, name, state));
+	getTodosByProject(projectID) {
+		return todo.filter((todo) => todo.projectID === projectID);
 	}
-	setActiveProject(projectId) {
-		for (const project of projects) {
-			if (projectId === project.id) {
-				project.isActive = true;
-			} else {
-				project.isActive = false;
-			}
-		}
+	getCompletedTodos(projectID) {
+		return todo.filter(
+			(todo) => todo.projectID === projectID && todo.completed,
+		);
 	}
 }

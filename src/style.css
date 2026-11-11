@@ -114,6 +114,8 @@
 ul {
 	list-style: none;
 	padding: 1rem 0;
+	display: grid;
+	gap: 0.5rem;
 }
 
 ul li {
@@ -123,12 +125,16 @@ ul li {
 	cursor: pointer;
 	transition: 0.2s ease-out;
 	font-weight: 400;
+	padding: 1rem;
 }
 
 ul li:hover,
 .active {
-	padding: 1rem;
 	background-color: var(--selected);
+}
+
+.active {
+	font-weight: bold;
 }
 
 .project-form {
