@@ -3,17 +3,17 @@ import { TodoManager } from "../modules/TodoManager.js";
 const todoManager = new TodoManager();
 
 export class RenderTodo {
-	renderTodo(location, projectArray, todoArray) {
+	renderTodo(location, projectArray) {
 		location.textContent = "";
 
 		const mainHeader = new RenderHeader();
 
-		location.appendChild(mainHeader.renderHeader(projectArray, todoArray));
+		location.appendChild(mainHeader.renderHeader(projectArray));
 	}
 }
 
 export class RenderHeader {
-	renderHeader(projectArray, todoArray) {
+	renderHeader(projectArray) {
 		const header = document.createElement("div");
 		header.classList.add("main-header");
 
@@ -26,9 +26,11 @@ export class RenderHeader {
 
 		const taskLength = document.createElement("p");
 		const taskSpan = document.createElement("span");
+		const addTaskButton = document.createElement("button");
 
 		taskLength.classList.add("task-length");
 		taskSpan.classList.add("completed-task-length");
+		addTaskButton.classList.add("add-todo");
 
 		taskLength.textContent = `${
 			todoManager.getTodosByProject(activeID?.id).length
@@ -40,8 +42,11 @@ export class RenderHeader {
 
 		taskLength.appendChild(taskSpan);
 
+		addTaskButton.textContent = `Add Todo`;
+
 		header.appendChild(headerTitle);
 		header.appendChild(taskLength);
+		header.appendChild(addTaskButton);
 
 		return header;
 	}
