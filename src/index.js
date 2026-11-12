@@ -41,7 +41,7 @@ function renderProject() {
 
 function renderTodo() {
 	const render = new RenderTodo();
-	render.renderTodo(todoBody, projects);
+	render.renderTodo(todoBody, projects, todo);
 }
 
 function clearInput() {

@@ -27,7 +27,7 @@ export const todo = [
 		"Build Todo App",
 		"Implement the todo creation feature",
 		"2026-11-13",
-		"High",
+		"Medium",
 		"2",
 	),
 ];
