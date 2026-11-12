@@ -3,14 +3,14 @@ import { TodoManager } from "../modules/TodoManager.js";
 const todoManager = new TodoManager();
 
 export class RenderTodo {
-	renderTodo(location, projectArray, todoArray) {
+	renderTodo(location, projectArray) {
 		location.textContent = "";
 
 		const mainHeader = new RenderHeader();
 		const mainBody = new RenderBody();
 
 		location.appendChild(mainHeader.renderHeader(projectArray));
-		location.appendChild(mainBody.renderBody(projectArray));
+		location.appendChild(mainBody.renderBody(location, projectArray));
 	}
 }
 
@@ -35,7 +35,7 @@ class RenderHeader {
 		addTaskButton.classList.add("add-todo");
 
 		taskLength.textContent = `${
-			todoManager.getTodosByProject(projectActiveID?.id).length
+			todoManager.getIncompleteTodos(projectActiveID?.id).length
 		} Task/s`;
 
 		taskSpan.textContent = ` · ${
@@ -55,7 +55,7 @@ class RenderHeader {
 }
 
 class RenderBody {
-	renderBody(projectArray) {
+	renderBody(location, projectArray) {
 		const projectActiveID = projectArray.find((project) => project.isActive);
 		const filtered = todoManager.getTodosByProject(projectActiveID?.id);
 
@@ -73,6 +73,14 @@ class RenderBody {
 			checkBox.type = "checkbox";
 			checkBox.name = "done";
 			checkBox.id = todo.id;
+
+			checkBox.checked = todo.completed;
+
+			checkBox.addEventListener("change", () => {
+				const render = new RenderTodo();
+				todoManager.toggleComplete(todo.id);
+				render.renderTodo(location, projectArray);
+			});
 
 			// TODO DETAILS
 
@@ -94,6 +102,10 @@ class RenderBody {
 			todoDetails.appendChild(todoTitle);
 			todoDetails.appendChild(todoDesc);
 			todoDetails.appendChild(todoDue);
+
+			todo.completed
+				? todoDetails.classList.add("completed")
+				: todoDetails.classList.remove("completed");
 
 			// CARD STATUS
 
@@ -174,8 +186,4 @@ class CreateSVG {
 
 		return svg;
 	}
-}
-
-class createButton {
-	createButton(button) {}
 }

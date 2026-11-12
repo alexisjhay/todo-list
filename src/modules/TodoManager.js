@@ -41,4 +41,18 @@ export class TodoManager {
 			(todo) => todo.projectID === projectID && todo.completed,
 		);
 	}
+	getIncompleteTodos(projectID) {
+		return todo.filter(
+			(todo) => todo.projectID === projectID && todo.completed === false,
+		);
+	}
+	toggleComplete(targetID) {
+		const id = todo.find((todo) => todo.id === targetID);
+
+		if (!id) return;
+
+		id.completed = !id.completed;
+
+		return id.completed;
+	}
 }

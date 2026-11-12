@@ -236,6 +236,11 @@ ul li:hover,
 	padding: 1rem;
 }
 
+.completed {
+	color: var(--secondary-text);
+	text-decoration: line-through;
+}
+
 .card input[type="checkbox"] {
 	accent-color: var(--primary);
 	color: white;
