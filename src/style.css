@@ -4,6 +4,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	font-family: "Roboto", sans-serif;
 }
 
 :root {
@@ -43,7 +44,6 @@
 	gap: 1rem;
 	width: min(1600px, 95%);
 	margin: 0 auto;
-	font-family: "Roboto", sans-serif;
 }
 
 /* HEADER */
@@ -322,4 +322,62 @@ ul li:hover,
 
 .card-status button svg:hover {
 	fill: var(--high-priority);
+}
+
+/* TODO FORM */
+
+.todo-form-container {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 99;
+	background-color: #2f373485;
+	align-content: center;
+	justify-items: center;
+}
+
+.form-header {
+	margin-bottom: 1rem;
+	font-weight: 600;
+}
+
+.todo-form {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+	align-items: center;
+	gap: 1rem;
+	background-color: var(--card);
+	padding: 2rem;
+	border-radius: var(--border-radius);
+}
+
+.input-container {
+	display: grid;
+	grid-template-columns: 75px 1fr;
+	gap: 1rem;
+	align-items: center;
+}
+
+input,
+textarea,
+select {
+	padding: 0.5rem;
+	border-radius: 10px;
+	border: 1px solid var(--primary);
+}
+
+.todo-add,
+.todo-cancel {
+	padding: 1rem;
+	border: none;
+	color: var(--card);
+	border-radius: 10px;
+	background-color: var(--primary);
+	font-size: 1.1rem;
+	cursor: pointer;
+}
+
+.todo-add {
+	margin-top: 2rem;
 }

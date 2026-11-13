@@ -55,4 +55,9 @@ export class TodoManager {
 
 		return id.completed;
 	}
+	addTodo(title, description, dueDate, priority, projectID) {
+		return todo.push(
+			new Todo(title, description, dueDate, priority, projectID),
+		);
+	}
 }
