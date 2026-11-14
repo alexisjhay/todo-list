@@ -5,7 +5,7 @@ import { isEmpty } from "../utils/validation.js";
 const todoManager = new TodoManager();
 
 export class RenderTodoForm {
-	createForm(location, todoBody, projectArray) {
+	createForm(location, todoBody, projectArray, isEditing, todoID) {
 		const formInput = [
 			{
 				name: "title",
@@ -88,23 +88,33 @@ export class RenderTodoForm {
 		form.addEventListener("submit", (e) => {
 			e.preventDefault();
 
-			const title = document.querySelector("#title");
-			const description = document.querySelector("#description");
-			const date = document.querySelector("#date");
-			const priority = document.querySelector("#priority");
+			const title = form.querySelector("#title");
+			const description = form.querySelector("#description");
+			const date = form.querySelector("#date");
+			const priority = form.querySelector("#priority");
 
 			const activeID = projectArray.find((project) => project.isActive)?.id;
 
 			if (isEmpty(title)) return;
 			if (isEmpty(description)) return;
 
-			todoManager.addTodo(
-				title.value.trim(),
-				description.value.trim(),
-				date.value,
-				priority.value,
-				activeID,
-			);
+			if (!isEditing) {
+				todoManager.addTodo(
+					title.value.trim(),
+					description.value.trim(),
+					date.value,
+					priority.value,
+					activeID,
+				);
+			} else {
+				todoManager.updateTodo(
+					todoID,
+					title.value.trim(),
+					description.value.trim(),
+					date.value,
+					priority.value,
+				);
+			}
 
 			const render = new RenderTodo();
 			render.renderTodo(todoBody, projectArray);

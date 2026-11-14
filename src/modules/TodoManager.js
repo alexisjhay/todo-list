@@ -60,4 +60,14 @@ export class TodoManager {
 			new Todo(title, description, dueDate, priority, projectID),
 		);
 	}
+	updateTodo(todoID, title, description, dueDate, priority) {
+		const targetTodo = todo.find((todo) => todo.id === todoID);
+
+		if (targetTodo) {
+			targetTodo.title = title;
+			targetTodo.description = description;
+			targetTodo.dueDate = dueDate;
+			targetTodo.priority = priority;
+		}
+	}
 }

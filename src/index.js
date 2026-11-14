@@ -59,6 +59,11 @@ function clearInput() {
 todoBody.addEventListener("click", (e) => {
 	if (e.target.matches(".add-todo")) {
 		const render = new RenderTodoForm();
-		render.createForm(document.querySelector("body"), todoBody, projects);
+		render.createForm(
+			document.querySelector("body"),
+			todoBody,
+			projects,
+			false,
+		);
 	}
 });

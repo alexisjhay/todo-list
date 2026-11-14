@@ -1,4 +1,5 @@
 import { TodoManager } from "../modules/TodoManager.js";
+import { RenderTodoForm } from "./createTodoForm.js";
 
 const todoManager = new TodoManager();
 
@@ -117,8 +118,38 @@ class RenderBody {
 
 			cardStatus.classList.add("card-status");
 			priority.classList.add("priority");
+
 			updateBtn.classList.add("update");
 			deleteBtn.classList.add("delete");
+
+			const formRender = new RenderTodoForm();
+
+			updateBtn.addEventListener("click", (e) => {
+				formRender.createForm(
+					document.querySelector("body"),
+					location,
+					projectArray,
+					true,
+					todo.id,
+				);
+
+				const formHeader = document.querySelector(".form-header");
+				const title = document.querySelector("#title");
+				const description = document.querySelector("#description");
+				const date = document.querySelector("#date");
+				const priority = document.querySelector("#priority");
+
+				const formButton = document.querySelector(".todo-add");
+
+				formHeader.textContent = "Update To-Do";
+
+				title.value = todo.title;
+				description.value = todo.description;
+				date.value = todo.dueDate;
+				priority.value = todo.priority;
+
+				formButton.textContent = "Update";
+			});
 
 			const prio = new CardStatus();
 			const svg = new CreateSVG();
