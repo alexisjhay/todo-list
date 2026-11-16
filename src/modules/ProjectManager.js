@@ -1,10 +1,6 @@
 import { Project } from "./Project.js";
 
-export const projects = [
-	new Project("0", "Default", true),
-	new Project("1", "Work", false),
-	new Project("2", "School", false),
-];
+export const projects = [new Project("0", "Default", true)];
 
 export class ProjectManager {
 	addProject(id, name, state) {

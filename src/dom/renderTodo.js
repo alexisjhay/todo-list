@@ -2,6 +2,7 @@ import { TodoManager } from "../modules/TodoManager.js";
 import { RenderTodoForm } from "./createTodoForm.js";
 
 const todoManager = new TodoManager();
+let activeFilter = "all";
 
 export class RenderTodo {
 	renderTodo(location, projectArray) {
@@ -10,13 +11,15 @@ export class RenderTodo {
 		const mainHeader = new RenderHeader();
 		const mainBody = new RenderBody();
 
-		location.appendChild(mainHeader.renderHeader(projectArray));
-		location.appendChild(mainBody.renderBody(location, projectArray));
+		location.appendChild(mainHeader.renderHeader(projectArray, location));
+		location.appendChild(
+			mainBody.renderBody(location, projectArray, activeFilter),
+		);
 	}
 }
 
 class RenderHeader {
-	renderHeader(projectArray) {
+	renderHeader(projectArray, location) {
 		const header = document.createElement("div");
 		header.classList.add("main-header");
 
@@ -47,18 +50,102 @@ class RenderHeader {
 
 		addTaskButton.textContent = `Add Todo`;
 
+		const filterContainer = document.createElement("div");
+		filterContainer.classList.add("filter-container");
+
+		const filterDropdown = document.createElement("select");
+		filterDropdown.id = "filterSelect";
+		const filters = [
+			{ name: "All", value: "all", isSelected: activeFilter === "all" },
+			{
+				name: "Incomplete",
+				value: "incomplete",
+				isSelected: activeFilter === "incomplete",
+			},
+			{
+				name: "Completed",
+				value: "completed",
+				isSelected: activeFilter === "completed",
+			},
+			{
+				name: "High Priority",
+				value: "high-priority",
+				isSelected: activeFilter === "high-priority",
+			},
+			{
+				name: "Medium Priority",
+				value: "medium-priority",
+				isSelected: activeFilter === "medium-priority",
+			},
+			{
+				name: "Low Priority",
+				value: "low-priority",
+				isSelected: activeFilter === "low-priority",
+			},
+			{
+				name: "Overdue",
+				value: "overdue",
+				isSelected: activeFilter === "overdue",
+			},
+		];
+
+		filterContainer.appendChild(filterDropdown);
+
+		for (const filter of filters) {
+			const newOption = new Option(
+				filter.name,
+				filter.value,
+				filter.isSelected,
+				filter.isSelected,
+			);
+
+			filterDropdown.add(newOption);
+		}
+
+		filterDropdown.addEventListener("change", (e) => {
+			activeFilter = e.target.value;
+
+			const render = new RenderTodo();
+			render.renderTodo(location, projectArray);
+		});
+
 		header.appendChild(headerTitle);
 		header.appendChild(taskLength);
 		header.appendChild(addTaskButton);
+		header.appendChild(filterContainer);
 
 		return header;
 	}
 }
 
 class RenderBody {
-	renderBody(location, projectArray) {
+	renderBody(location, projectArray, filter) {
 		const projectActiveID = projectArray.find((project) => project.isActive);
-		const filtered = todoManager.getTodosByProject(projectActiveID?.id);
+		let filtered = todoManager.getTodosByProject(projectActiveID?.id);
+
+		switch (filter) {
+			case "all":
+				filtered = todoManager.getTodosByProject(projectActiveID?.id);
+				break;
+			case "incomplete":
+				filtered = todoManager.getIncompleteTodos(projectActiveID?.id);
+				break;
+			case "completed":
+				filtered = todoManager.getCompletedTodos(projectActiveID?.id);
+				break;
+			case "high-priority":
+				filtered = todoManager.getPriorityTodo(projectActiveID?.id, "High");
+				break;
+			case "medium-priority":
+				filtered = todoManager.getPriorityTodo(projectActiveID?.id, "Medium");
+				break;
+			case "low-priority":
+				filtered = todoManager.getPriorityTodo(projectActiveID?.id, "Low");
+				break;
+			case "overdue":
+				filtered = todoManager.getOverdueTodo(projectActiveID?.id);
+				break;
+		}
 
 		const body = document.createElement("div");
 		body.classList.add("main-body");

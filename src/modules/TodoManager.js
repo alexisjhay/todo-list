@@ -2,33 +2,39 @@ import { Todo } from "./Todo.js";
 
 export const todo = [
 	new Todo(
-		"Finish JavaScript course",
-		"Complete the DOM manipulation lesson",
+		"Study CSS Grid",
+		"Practice building responsive layouts",
 		"2026-11-12",
-		"High",
-		"1",
-	),
-	new Todo(
-		"Read a book",
-		"Read 20 pages of Atomic Habits",
-		"2026-11-11",
-		"Low",
-		"2",
-	),
-	new Todo(
-		"Build Todo App",
-		"Implement the todo creation feature",
-		"2026-11-13",
 		"High",
 		"0",
 	),
-
 	new Todo(
-		"Build Todo App",
-		"Implement the todo creation feature",
-		"2026-11-13",
+		"Water the plants",
+		"Water all indoor plants",
+		"2026-11-19",
+		"Low",
+		"0",
+	),
+	new Todo(
+		"Prepare presentation",
+		"Create slides for the weekly meeting",
+		"2026-11-14",
+		"High",
+		"0",
+	),
+	new Todo(
+		"Wash the car",
+		"Clean the exterior and interior",
+		"2026-11-21",
 		"Medium",
-		"2",
+		"0",
+	),
+	new Todo(
+		"Update resume",
+		"Add recent projects and skills",
+		"2026-11-09",
+		"Medium",
+		"0",
 	),
 ];
 
@@ -44,6 +50,19 @@ export class TodoManager {
 	getIncompleteTodos(projectID) {
 		return todo.filter(
 			(todo) => todo.projectID === projectID && todo.completed === false,
+		);
+	}
+	getPriorityTodo(projectID, priority) {
+		return todo.filter(
+			(todo) => todo.projectID === projectID && todo.priority === priority,
+		);
+	}
+	getOverdueTodo(projectID) {
+		return todo.filter(
+			(todo) =>
+				todo.projectID === projectID &&
+				todo.dueDate < new Date().toISOString().split("T")[0] &&
+				todo.completed === false,
 		);
 	}
 	toggleComplete(targetID) {
