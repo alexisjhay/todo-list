@@ -55,6 +55,7 @@ class RenderHeader {
 
 		const filterDropdown = document.createElement("select");
 		filterDropdown.id = "filterSelect";
+		filterDropdown.classList.add("filter-select");
 		const filters = [
 			{ name: "All", value: "all", isSelected: activeFilter === "all" },
 			{
@@ -241,7 +242,7 @@ class RenderBody {
 			const prio = new CardStatus();
 			const svg = new CreateSVG();
 
-			prio.renderPriority(priority, todo.priority);
+			prio.renderPriority(priority, todo.priority, card);
 
 			updateBtn.appendChild(
 				svg.createSVG(
@@ -273,16 +274,19 @@ class RenderBody {
 }
 
 class CardStatus {
-	renderPriority(span, priority) {
+	renderPriority(span, priority, card) {
 		if (priority === "Low") {
 			span.textContent = "Low";
 			span.classList.add("low");
+			card.classList.add("low");
 		} else if (priority === "Medium") {
 			span.textContent = "Medium";
 			span.classList.add("medium");
+			card.classList.add("medium");
 		} else {
 			span.textContent = "High";
 			span.classList.add("high");
+			card.classList.add("high");
 		}
 	}
 }

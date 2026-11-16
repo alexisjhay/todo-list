@@ -8,7 +8,7 @@
 }
 
 :root {
-	--sidebar: #34443d;
+	/* --sidebar: #34443d;
 	--selected: #536b5d;
 	--primary: #91a58e;
 	--background: #f8f7f0;
@@ -18,21 +18,33 @@
 	--medium-priority: #c49b70;
 	--high-priority: #bd7770;
 	--secondary-text: #898f84;
-	--text: #34443d;
+	--text: #34443d; */
+
+	--sidebar: #303d52;
+	--selected: #4b607a;
+	--primary: #8fa8c3;
+	--background: #f4f5f8;
+	--surface: #e8ebf1;
+	--card: #ffffff;
+	--completed: #7d9b91;
+	--medium-priority: #c5a477;
+	--high-priority: #c47f83;
+	--secondary-text: #858d9b;
+	--text: #303d52;
 
 	--border-radius: 15px;
 
 	/* High priority */
-	--high-priority: #c77c78;
-	--high-priority-bg: #f5e7e5;
+	--high-priority: #b96f78;
+	--high-priority-bg: #f4e5e8;
 
 	/* Medium priority */
-	--medium-priority: #d5ac72;
-	--medium-priority-bg: #f6efdf;
+	--medium-priority: #bd965e;
+	--medium-priority-bg: #f5eedf;
 
 	/* Low priority */
-	--low-priority: #789080;
-	--low-priority-bg: #e8efea;
+	--low-priority: #718d9b;
+	--low-priority-bg: #e7eff2;
 }
 
 .container {
@@ -88,6 +100,23 @@
 	color: var(--card);
 }
 
+.filter-select {
+	appearance: none;
+	width: 150px;
+	padding: 7px 10px;
+	border: 1px solid #8fa8c3;
+	border-radius: 6px;
+	background-color: #ffffff;
+	color: #303d52;
+	font-size: 12px;
+	cursor: pointer;
+	outline: none;
+}
+
+.filter-select:focus {
+	border-color: #4b607a;
+	box-shadow: 0 0 0 2px #e8ebf1;
+}
 /* SIDEBAR */
 
 .sidebar {
@@ -222,11 +251,6 @@ ul li:hover,
 	grid-column: 1 / 3;
 	display: grid;
 	justify-items: end;
-}
-
-.filter-container select {
-	width: min(120px, 40%);
-	padding: 0;
 }
 
 .main-body {
