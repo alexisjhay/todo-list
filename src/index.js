@@ -39,6 +39,14 @@ projectList.addEventListener("click", (e) => {
 
 		renderProject();
 		renderTodo();
+	} else if (e.target.tagName === "BUTTON") {
+		e.stopPropagation();
+		const targetID = e.target.dataset.id;
+
+		projectManager.deleteProject(targetID);
+		projectManager.setActiveProject("0");
+		renderProject();
+		renderTodo();
 	}
 });
 

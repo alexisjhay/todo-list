@@ -155,6 +155,20 @@ ul li {
 	transition: 0.2s ease-out;
 	font-weight: 400;
 	padding: 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.remove-project {
+	color: var(--card);
+	border: none;
+	visibility: hidden;
+	background-color: var(--primary);
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	cursor: pointer;
 }
 
 ul li:hover,

@@ -239,6 +239,12 @@ class RenderBody {
 				formButton.textContent = "Update";
 			});
 
+			deleteBtn.addEventListener("click", () => {
+				todoManager.deleteTodo(todo.id);
+				const render = new RenderTodo();
+				render.renderTodo(location, projectArray);
+			});
+
 			const prio = new CardStatus();
 			const svg = new CreateSVG();
 
